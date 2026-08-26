@@ -31,12 +31,16 @@
 </section>
 
 <section class="content" style="padding-top: 40px;">
-  <div id="form-container">
-    <div class="notice" id="form-notice" style="display:none;">
-      <strong>Almost there.</strong> The form isn't connected yet. Set <code>FORM_EMBED_URL</code>
-      in <code>assets/js/config.js</code> to your Google Form's embed URL — see the README.
-    </div>
-    <div class="form-frame-wrap" id="form-frame-wrap"></div>
+  <div class="notice" id="form-notice" style="display:none;">
+    <strong>Almost there.</strong> The form isn't connected yet. Set <code>FORM_EMBED_URL</code>
+    in <code>assets/js/config.js</code> to your Google Form's URL — see the README.
+  </div>
+
+  <div class="card" id="form-card" style="max-width: 480px; margin: 0 auto; display:none;">
+    <div class="icon">✍️</div>
+    <h3>Ready when you are</h3>
+    <p>The form opens in a new tab so you won't lose your place here.</p>
+    <a class="btn btn-gold" href="#" id="form-link" target="_blank" rel="noopener">Open the Form</a>
   </div>
 
   <p class="section-sub" style="margin-top:28px;">
@@ -54,14 +58,15 @@
 <script src="assets/js/config.js"></script>
 <script>
   (function () {
-    const url = window.SITE_CONFIG && window.SITE_CONFIG.FORM_EMBED_URL;
-    const wrap = document.getElementById("form-frame-wrap");
+    const rawUrl = window.SITE_CONFIG && window.SITE_CONFIG.FORM_EMBED_URL;
     const notice = document.getElementById("form-notice");
-    if (url) {
-      const iframe = document.createElement("iframe");
-      iframe.src = url;
-      iframe.setAttribute("title", "Share a Memory form");
-      wrap.appendChild(iframe);
+    const card = document.getElementById("form-card");
+    if (rawUrl) {
+      // Strip the "embedded=true" flag (leftover from the old iframe embed)
+      // so the link opens the Form's normal, full-page view.
+      const plainUrl = rawUrl.replace(/[?&]embedded=true/, "");
+      document.getElementById("form-link").href = plainUrl;
+      card.style.display = "block";
     } else {
       notice.style.display = "block";
     }

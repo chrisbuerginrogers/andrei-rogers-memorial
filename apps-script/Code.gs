@@ -31,14 +31,15 @@ function doGet(e) {
     return jsonResponse([]);
   }
 
-  const headers = values[0];
+  const headers = values[0].map(h => String(h).trim().toLowerCase());
+  const findCol = (name) => headers.indexOf(name.trim().toLowerCase());
   const idx = {
-    timestamp: headers.indexOf(HEADER_TIMESTAMP),
-    name: headers.indexOf(HEADER_NAME),
-    relationship: headers.indexOf(HEADER_RELATIONSHIP),
-    reflection: headers.indexOf(HEADER_REFLECTION),
-    photos: headers.indexOf(HEADER_PHOTOS),
-    approved: headers.indexOf(HEADER_APPROVED),
+    timestamp: findCol(HEADER_TIMESTAMP),
+    name: findCol(HEADER_NAME),
+    relationship: findCol(HEADER_RELATIONSHIP),
+    reflection: findCol(HEADER_REFLECTION),
+    photos: findCol(HEADER_PHOTOS),
+    approved: findCol(HEADER_APPROVED),
   };
 
   const results = [];
