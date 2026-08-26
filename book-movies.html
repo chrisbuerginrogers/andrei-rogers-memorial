@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Book &amp; Film &middot; Andrei Rogers</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Source+Sans+3:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+<header class="site-header">
+  <nav class="nav">
+    <a class="nav-brand" href="index.html">Andrei Rogers</a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="memories.html">Memories Wall</a></li>
+      <li><a href="share.html">Share a Memory</a></li>
+      <li><a href="gallery.html">Photo Gallery</a></li>
+      <li><a href="book-movies.html" class="active">Book &amp; Film</a></li>
+    </ul>
+  </nav>
+</header>
+
+<section class="hero" style="padding: 48px 24px 40px;">
+  <div class="hero-inner">
+    <h1 style="font-size: clamp(1.9rem, 4vw, 2.6rem);">Book &amp; Film</h1>
+    <p class="tagline">More of Andrei's story, in his own words and on screen.</p>
+  </div>
+</section>
+
+<section class="content" style="padding-top: 40px;">
+  <div class="card-grid">
+    <div class="card" id="card-book">
+      <div class="icon">📖</div>
+      <h3>The Book</h3>
+      <p>Link coming soon.</p>
+      <a class="btn btn-outline" href="#" id="book-link" style="display:none;">Read the Book</a>
+    </div>
+    <div class="card" id="card-film">
+      <div class="icon">🎬</div>
+      <h3>The Film</h3>
+      <p>Link coming soon.</p>
+      <a class="btn btn-outline" href="#" id="film-link" style="display:none;">Watch the Film</a>
+    </div>
+  </div>
+</section>
+
+<footer class="site-footer">
+  In loving memory of Andrei Rogers &middot; September 1937 &ndash; August 18, 2026 <span class="heart">&hearts;</span>
+</footer>
+
+<script>
+  // When you have the real links, fill these in and the "coming soon" text
+  // and hidden buttons above will switch over automatically.
+  const BOOK_URL = "";
+  const FILM_URL = "";
+
+  function wireUp(url, linkId, cardId, label) {
+    if (!url) return;
+    const link = document.getElementById(linkId);
+    link.href = url;
+    link.style.display = "inline-block";
+    document.querySelector(`#${cardId} p`).textContent = label;
+  }
+  wireUp(BOOK_URL, "book-link", "card-book", "Available now.");
+  wireUp(FILM_URL, "film-link", "card-film", "Available now.");
+</script>
+</body>
+</html>

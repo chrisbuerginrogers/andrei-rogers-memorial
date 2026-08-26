@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Share a Memory &middot; Andrei Rogers</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Source+Sans+3:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+<header class="site-header">
+  <nav class="nav">
+    <a class="nav-brand" href="index.html">Andrei Rogers</a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="memories.html">Memories Wall</a></li>
+      <li><a href="share.html" class="active">Share a Memory</a></li>
+      <li><a href="gallery.html">Photo Gallery</a></li>
+      <li><a href="book-movies.html">Book &amp; Film</a></li>
+    </ul>
+  </nav>
+</header>
+
+<section class="hero" style="padding: 48px 24px 40px;">
+  <div class="hero-inner">
+    <h1 style="font-size: clamp(1.9rem, 4vw, 2.6rem);">Share a Memory</h1>
+    <p class="tagline">Tell us about a moment with Andrei, a story he told, or something you'll always remember about him. Photos are welcome too.</p>
+  </div>
+</section>
+
+<section class="content" style="padding-top: 40px;">
+  <div id="form-container">
+    <div class="notice" id="form-notice" style="display:none;">
+      <strong>Almost there.</strong> The form isn't connected yet. Set <code>FORM_EMBED_URL</code>
+      in <code>assets/js/config.js</code> to your Google Form's embed URL — see the README.
+    </div>
+    <div class="form-frame-wrap" id="form-frame-wrap"></div>
+  </div>
+
+  <p class="section-sub" style="margin-top:28px;">
+    Note: uploading photos through the form requires signing in with a Google account
+    (Google's requirement for file uploads, not ours). If you'd rather not sign in,
+    feel free to email your photos to the family instead and we'll add them to the gallery.
+  </p>
+</section>
+
+<footer class="site-footer">
+  In loving memory of Andrei Rogers &middot; September 1937 &ndash; August 18, 2026 <span class="heart">&hearts;</span>
+</footer>
+
+<script src="assets/js/config.js"></script>
+<script>
+  (function () {
+    const url = window.SITE_CONFIG && window.SITE_CONFIG.FORM_EMBED_URL;
+    const wrap = document.getElementById("form-frame-wrap");
+    const notice = document.getElementById("form-notice");
+    if (url) {
+      const iframe = document.createElement("iframe");
+      iframe.src = url;
+      iframe.setAttribute("title", "Share a Memory form");
+      wrap.appendChild(iframe);
+    } else {
+      notice.style.display = "block";
+    }
+  })();
+</script>
+</body>
+</html>

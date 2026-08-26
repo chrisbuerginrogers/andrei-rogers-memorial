@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Memories Wall &middot; Andrei Rogers</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Source+Sans+3:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+<header class="site-header">
+  <nav class="nav">
+    <a class="nav-brand" href="index.html">Andrei Rogers</a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="memories.html" class="active">Memories Wall</a></li>
+      <li><a href="share.html">Share a Memory</a></li>
+      <li><a href="gallery.html">Photo Gallery</a></li>
+      <li><a href="book-movies.html">Book &amp; Film</a></li>
+    </ul>
+  </nav>
+</header>
+
+<section class="hero" style="padding: 48px 24px 40px;">
+  <div class="hero-inner">
+    <h1 style="font-size: clamp(1.9rem, 4vw, 2.6rem);">Memories Wall</h1>
+    <p class="tagline">Reflections shared by family and friends whose lives Andrei touched.</p>
+    <div class="hero-actions">
+      <a class="btn btn-gold" href="share.html">Share Your Own Memory</a>
+    </div>
+  </div>
+</section>
+
+<section class="content" style="padding-top: 40px;">
+  <div class="filter-bar">
+    <div class="filter-field">
+      <label for="filter-search">Search</label>
+      <input type="text" id="filter-search" placeholder="Search reflections…">
+    </div>
+    <div class="filter-field">
+      <label for="filter-author">Author</label>
+      <input type="text" id="filter-author" placeholder="Search by name…">
+    </div>
+    <div class="filter-field">
+      <label for="filter-from">From date</label>
+      <input type="date" id="filter-from">
+    </div>
+    <div class="filter-field">
+      <label for="filter-to">To date</label>
+      <input type="date" id="filter-to">
+    </div>
+    <div class="filter-field">
+      <label for="filter-sort">Sort</label>
+      <select id="filter-sort">
+        <option value="newest">Newest first</option>
+        <option value="oldest">Oldest first</option>
+      </select>
+    </div>
+    <div class="filter-field filter-clear">
+      <button class="btn btn-outline" id="filter-clear" type="button" style="width:100%;">Clear Filters</button>
+    </div>
+  </div>
+
+  <div class="memories-meta" id="memories-meta"></div>
+  <div class="memories-list" id="memories-list">
+    <div class="state-msg">Loading memories…</div>
+  </div>
+</section>
+
+<footer class="site-footer">
+  In loving memory of Andrei Rogers &middot; September 1937 &ndash; August 18, 2026 <span class="heart">&hearts;</span>
+</footer>
+
+<script src="assets/js/config.js"></script>
+<script src="assets/js/memories.js"></script>
+</body>
+</html>

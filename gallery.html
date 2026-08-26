@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Photo Gallery &middot; Andrei Rogers</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Source+Sans+3:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+<header class="site-header">
+  <nav class="nav">
+    <a class="nav-brand" href="index.html">Andrei Rogers</a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="memories.html">Memories Wall</a></li>
+      <li><a href="share.html">Share a Memory</a></li>
+      <li><a href="gallery.html" class="active">Photo Gallery</a></li>
+      <li><a href="book-movies.html">Book &amp; Film</a></li>
+    </ul>
+  </nav>
+</header>
+
+<section class="hero" style="padding: 48px 24px 40px;">
+  <div class="hero-inner">
+    <h1 style="font-size: clamp(1.9rem, 4vw, 2.6rem);">Photo Gallery</h1>
+    <p class="tagline">Photos from a life spent exploring the world, shared by family and friends.</p>
+    <div class="hero-actions">
+      <a class="btn btn-gold" href="share.html">Add Your Photos</a>
+    </div>
+  </div>
+</section>
+
+<section class="content" style="padding-top: 40px;">
+  <div class="notice" id="gallery-notice" style="display:none;">
+    <strong>Almost there.</strong> Set <code>GALLERY_FOLDER_ID</code> in
+    <code>assets/js/config.js</code> to your Google Drive folder's ID — see the README.
+  </div>
+  <div class="gallery-frame-wrap" id="gallery-frame-wrap"></div>
+</section>
+
+<footer class="site-footer">
+  In loving memory of Andrei Rogers &middot; September 1937 &ndash; August 18, 2026 <span class="heart">&hearts;</span>
+</footer>
+
+<script src="assets/js/config.js"></script>
+<script>
+  (function () {
+    const folderId = window.SITE_CONFIG && window.SITE_CONFIG.GALLERY_FOLDER_ID;
+    const wrap = document.getElementById("gallery-frame-wrap");
+    const notice = document.getElementById("gallery-notice");
+    if (folderId) {
+      const iframe = document.createElement("iframe");
+      iframe.src = `https://drive.google.com/embeddedfolderview?id=${encodeURIComponent(folderId)}#grid`;
+      iframe.setAttribute("title", "Photo gallery");
+      wrap.appendChild(iframe);
+    } else {
+      notice.style.display = "block";
+    }
+  })();
+</script>
+</body>
+</html>
