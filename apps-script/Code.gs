@@ -1,5 +1,6 @@
 /**
- * Andrei Rogers memorial site — private backend for the Memories Wall.
+ * Andrei Rogers memorial site — private backend for the Memories Wall
+ * and the Photo Gallery.
  *
  * Paste this into Extensions > Apps Script on the Google Sheet that
  * collects your Form responses, then deploy it as a Web App (see README).
@@ -9,26 +10,36 @@
  *    private — it is never shared publicly).
  *  - Only returns rows whose "Approved" column is Yes/Y/True.
  *  - Never returns the email address column, even for approved rows.
+ *  - Lists image files in the shared Photo Gallery Drive folder
+ *    (call with ?type=photos).
  *
- * Expected column headers (row 1) — matches the default order Google
- * Forms writes responses in when the form questions are created in this
- * order: Timestamp, Your Name, Your Email, Your Relationship to Andrei
- * (optional), Your Memory or Reflection, Photos (optional), Approved.
- * If your headers differ, edit the HEADER constants below to match.
+ * Column headers below are matched case- and whitespace-insensitively
+ * against row 1 of your sheet. Update them here if you change your
+ * Form's question wording.
  */
 
 const HEADER_TIMESTAMP = "Timestamp";
-const HEADER_NAME = "Your Name";
-const HEADER_RELATIONSHIP = "Your Relationship to Andrei (optional)";
-const HEADER_REFLECTION = "Your Memory or Reflection";
-const HEADER_PHOTOS = "Photos (optional)";
+const HEADER_NAME = "Your name";
+const HEADER_RELATIONSHIP = "Your relationship to Andrei";
+const HEADER_REFLECTION = "A memory or reflection";
+const HEADER_PHOTOS = "Photos";
 const HEADER_APPROVED = "Approved";
 
+// The Drive folder shown on the Photo Gallery page.
+const PHOTOS_FOLDER_ID = "1SxniwEeLPN8rCkpuSCle0WNWxyqK9qxz8WoZgGA8Q9F0fewFKECAS4hfmdizwj02jJ0SM3DA";
+
 function doGet(e) {
+  if (e && e.parameter && e.parameter.type === "photos") {
+    return jsonResponse(listPhotos());
+  }
+  return jsonResponse(listMemories());
+}
+
+function listMemories() {
   const sheet = SpreadsheetApp.getActiveSpreadsheet().getSheets()[0];
   const values = sheet.getDataRange().getValues();
   if (values.length < 2) {
-    return jsonResponse([]);
+    return [];
   }
 
   const headers = values[0].map(h => String(h).trim().toLowerCase());
@@ -64,7 +75,28 @@ function doGet(e) {
     });
   }
 
-  return jsonResponse(results);
+  return results;
+}
+
+function listPhotos() {
+  const folder = DriveApp.getFolderById(PHOTOS_FOLDER_ID);
+  const files = folder.getFiles();
+  const results = [];
+
+  while (files.hasNext()) {
+    const file = files.next();
+    if (file.getMimeType().indexOf("image/") !== 0) continue;
+    const id = file.getId();
+    results.push({
+      name: file.getName(),
+      thumbnail: "https://drive.google.com/thumbnail?id=" + id + "&sz=w800",
+      viewUrl: "https://drive.google.com/file/d/" + id + "/view",
+      created: file.getDateCreated().getTime(),
+    });
+  }
+
+  results.sort((a, b) => b.created - a.created);
+  return results;
 }
 
 function toIso(value) {

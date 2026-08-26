@@ -6,7 +6,7 @@
 <title>Photo Gallery &middot; Andrei Rogers</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Source+Sans+3:wght@400;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/css/style.css?v=2">
+<link rel="stylesheet" href="assets/css/style.css?v=3">
 </head>
 <body>
 
@@ -35,10 +35,12 @@
 
 <section class="content" style="padding-top: 40px;">
   <div class="notice" id="gallery-notice" style="display:none;">
-    <strong>Almost there.</strong> Set <code>GALLERY_FOLDER_ID</code> in
-    <code>assets/js/config.js</code> to your Google Drive folder's ID — see the README.
+    <strong>Almost there.</strong> Set <code>MEMORIES_API_URL</code> in
+    <code>assets/js/config.js</code> to your deployed Apps Script Web App URL — see the README.
   </div>
-  <div class="gallery-frame-wrap" id="gallery-frame-wrap"></div>
+  <div class="photo-grid" id="photo-grid">
+    <div class="state-msg">Loading photos&hellip;</div>
+  </div>
 </section>
 
 <footer class="site-footer">
@@ -47,20 +49,6 @@
 </footer>
 
 <script src="assets/js/config.js"></script>
-<script>
-  (function () {
-    const folderId = window.SITE_CONFIG && window.SITE_CONFIG.GALLERY_FOLDER_ID;
-    const wrap = document.getElementById("gallery-frame-wrap");
-    const notice = document.getElementById("gallery-notice");
-    if (folderId) {
-      const iframe = document.createElement("iframe");
-      iframe.src = `https://drive.google.com/embeddedfolderview?id=${encodeURIComponent(folderId)}#grid`;
-      iframe.setAttribute("title", "Photo gallery");
-      wrap.appendChild(iframe);
-    } else {
-      notice.style.display = "block";
-    }
-  })();
-</script>
+<script src="assets/js/gallery.js"></script>
 </body>
 </html>
