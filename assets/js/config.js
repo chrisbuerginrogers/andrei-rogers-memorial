@@ -13,7 +13,7 @@ window.SITE_CONFIG = {
   // The embed URL of your Google Form (Share > embed <> icon, or add
   // "?embedded=true" to the form's viewform URL).
   // Looks like: https://docs.google.com/forms/d/e/FORM_ID/viewform?embedded=true
-  FORM_EMBED_URL: "",
+  FORM_EMBED_URL: "https://docs.google.com/forms/d/e/1FAIpQLSeB1EGEIJWLTmBKdcUlnOrMPox-H6DxB0lCmzpfjkksMwj0AA/viewform?embedded=true",
 
   // The Google Drive folder to show as the photo gallery. This can be the same
   // folder your Form's file-upload question saves photos into.
