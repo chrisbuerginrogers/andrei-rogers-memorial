@@ -18,7 +18,7 @@
       <li><a href="memories.html" class="active">Memories Wall</a></li>
       <li><a href="share.html">Share a Memory</a></li>
       <li><a href="gallery.html">Photo Gallery</a></li>
-      <li><a href="book-movies.html">Book &amp; Film</a></li>
+      <li><a href="book-movies.html">Book</a></li>
     </ul>
   </nav>
 </header>
@@ -34,7 +34,10 @@
 </section>
 
 <section class="content" style="padding-top: 40px;">
-  <div class="filter-bar">
+  <div style="text-align:center; margin-bottom: 20px;">
+    <button class="btn btn-outline" id="filter-toggle" type="button">🔍 Search &amp; Filter</button>
+  </div>
+  <div class="filter-bar" id="filter-bar" style="display:none;">
     <div class="filter-field">
       <label for="filter-search">Search</label>
       <input type="text" id="filter-search" placeholder="Search reflections…">

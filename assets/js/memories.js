@@ -11,6 +11,8 @@
   const toInput = document.getElementById("filter-to");
   const sortSelect = document.getElementById("filter-sort");
   const clearBtn = document.getElementById("filter-clear");
+  const filterBar = document.getElementById("filter-bar");
+  const filterToggle = document.getElementById("filter-toggle");
 
   let allMemories = [];
 
@@ -109,6 +111,14 @@
   }
 
   function init() {
+    if (filterToggle && filterBar) {
+      filterToggle.addEventListener("click", () => {
+        const isHidden = filterBar.style.display === "none";
+        filterBar.style.display = isHidden ? "grid" : "none";
+        filterToggle.textContent = isHidden ? "✕ Hide Search & Filter" : "🔍 Search & Filter";
+      });
+    }
+
     [searchInput, authorInput, fromInput, toInput].forEach(el =>
       el.addEventListener("input", applyFilters)
     );
