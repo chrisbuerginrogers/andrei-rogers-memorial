@@ -58,7 +58,7 @@ a:hover { color: var(--gold-deep); }
 .nav {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: flex-start;
   padding: 14px 24px;
   max-width: var(--max-width);
   margin: 0 auto;
@@ -134,17 +134,17 @@ a:hover { color: var(--gold-deep); }
   margin-bottom: 10px;
 }
 
-.hero-title-row {
+.hero-photos-row {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: clamp(16px, 3vw, 32px);
+  gap: clamp(12px, 3vw, 24px);
   flex-wrap: wrap;
-  margin-bottom: 14px;
+  margin-bottom: 20px;
 }
 
-.hero-title-row h1 {
-  margin-bottom: 0;
+.hero-dates {
+  margin-top: 4px;
 }
 
 .hero-photo {
@@ -307,6 +307,17 @@ section.content.alt {
   margin: 0 auto;
 }
 
+.card-grid-2x2 {
+  grid-template-columns: repeat(2, minmax(260px, 1fr));
+  max-width: 720px;
+}
+
+@media (max-width: 640px) {
+  .card-grid-2x2 {
+    grid-template-columns: 1fr;
+  }
+}
+
 .card {
   background: var(--cream-card);
   border: 1px solid var(--border);
@@ -319,6 +330,13 @@ section.content.alt {
 .card .icon {
   font-size: 2.2rem;
   margin-bottom: 12px;
+}
+
+.card .icon-svg {
+  color: var(--teal-deep);
+  margin-bottom: 12px;
+  display: flex;
+  justify-content: center;
 }
 
 .card h3 { margin-bottom: 8px; }
